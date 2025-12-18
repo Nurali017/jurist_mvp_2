@@ -1,0 +1,24 @@
+{
+  "name": "juirst",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev:api": "turbo run dev --filter=api",
+    "dev:web": "turbo run dev --filter=web",
+    "db:generate": "turbo run db:generate --filter=api",
+    "db:push": "turbo run db:push --filter=api",
+    "db:migrate": "turbo run db:migrate --filter=api"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

@@ -1,0 +1,271 @@
+{
+  "common": {
+    "loading": "Жүктелуде...",
+    "error": "Қате орын алды",
+    "success": "Сәтті",
+    "submit": "Жіберу",
+    "cancel": "Болдырмау",
+    "save": "Сақтау",
+    "delete": "Жою",
+    "edit": "Өзгерту",
+    "back": "Артқа",
+    "next": "Келесі",
+    "search": "Іздеу",
+    "filter": "Сүзгі",
+    "noResults": "Ештеңе табылмады",
+    "required": "Міндетті өріс"
+  },
+  "nav": {
+    "home": "Басты бет",
+    "login": "Кіру",
+    "register": "Тіркелу",
+    "logout": "Шығу",
+    "dashboard": "Жеке кабинет",
+    "profile": "Профиль",
+    "requests": "Өтініштер",
+    "admin": "Админ-панель"
+  },
+  "home": {
+    "title": "Заң қызметтері",
+    "subtitle": "Мәселеңізді шешуге білікті заңгер табыңыз",
+    "benefits": {
+      "title": "Неге бізді таңдайды",
+      "verified": {
+        "title": "Тексерілген заңгерлер",
+        "description": "Барлық мамандар құжаттары мен біліктілігі тексерілген"
+      },
+      "fast": {
+        "title": "Жылдам жауап",
+        "description": "24 сағат ішінде заңгерлерден ұсыныстар алыңыз"
+      },
+      "transparent": {
+        "title": "Ашық бағалар",
+        "description": "Бюджетті алдын ала көресіз, жасырын төлемдер жоқ"
+      },
+      "secure": {
+        "title": "Құпиялылық",
+        "description": "Сіздің деректеріңіз қорғалған және үшінші тараптарға берілмейді"
+      }
+    },
+    "requestForm": {
+      "title": "Өтініш қалдыру",
+      "description": "Мәселенің сипаттамасы",
+      "descriptionPlaceholder": "Заңдық мәселеңізді толық сипаттаңыз (кемінде 50 таңба)",
+      "budget": "Бюджет",
+      "budgetPlaceholder": "Шамамен бюджетті көрсетіңіз",
+      "currency": "Валюта",
+      "contactName": "Сіздің атыңыз",
+      "contactNamePlaceholder": "Сізге қалай хабарласу керек",
+      "phone": "Телефон",
+      "phonePlaceholder": "+7XXXXXXXXXX",
+      "email": "Email (міндетті емес)",
+      "emailPlaceholder": "your@email.com",
+      "preferredContact": "Қалаулы байланыс тәсілі",
+      "contactPhone": "Телефон",
+      "contactEmail": "Email",
+      "contactAny": "Кез келген",
+      "consent": "Мен жеке деректерді өңдеуге келісемін",
+      "submit": "Өтінішті жіберу",
+      "success": "Өтініш сәтті жіберілді!",
+      "requestNumber": "Өтініш нөмірі",
+      "descriptionHint": "Кемінде 50 таңба",
+      "newRequest": "Жаңа өтініш жасау"
+    }
+  },
+  "footer": {
+    "copyright": "Барлық құқықтар қорғалған"
+  },
+  "auth": {
+    "login": {
+      "title": "Жүйеге кіру",
+      "email": "Email",
+      "password": "Құпия сөз",
+      "submit": "Кіру",
+      "forgotPassword": "Құпия сөзді ұмыттыңыз ба?",
+      "noAccount": "Аккаунтыңыз жоқ па?",
+      "register": "Тіркелу",
+      "invalidCredentials": "Қате логин немесе құпия сөз"
+    },
+    "register": {
+      "title": "Тіркелу",
+      "selectType": "Түрін таңдаңыз",
+      "advocate": "Адвокат",
+      "consultant": "Заң кеңесшісі",
+      "email": "Email",
+      "password": "Құпия сөз",
+      "confirmPassword": "Құпия сөзді растаңыз",
+      "fullName": "Аты-жөні",
+      "iin": "ЖСН",
+      "phone": "Телефон",
+      "photo": "Фотосурет",
+      "diploma": "Заң білімі туралы диплом",
+      "license": "Лицензия",
+      "advocateLicense": "Адвокат куәлігі",
+      "consultantLicense": "Заң кеңесшілер палатасынан үзінді",
+      "submit": "Тіркелу",
+      "hasAccount": "Аккаунтыңыз бар ма?",
+      "login": "Кіру",
+      "success": "Тіркелу сәтті! Растау үшін email-ді тексеріңіз.",
+      "wizard": {
+        "steps": {
+          "type": "Түрі",
+          "info": "Деректер",
+          "password": "Құпия сөз",
+          "documents": "Құжаттар"
+        },
+        "typeDescription": "Заңгерлік қызмет түрін таңдаңыз",
+        "infoDescription": "Байланыс ақпаратын енгізіңіз",
+        "passwordDescription": "Аккаунтыңыз үшін сенімді құпия сөз жасаңыз",
+        "documentsDescription": "Верификация үшін қажетті құжаттарды жүктеңіз",
+        "lawyerTypes": {
+          "advocate": {
+            "title": "Адвокат",
+            "description": "Сотта өкілдік етуге құқығы бар лицензияланған адвокат"
+          },
+          "consultant": {
+            "title": "Заң кеңесшісі",
+            "description": "Заң кеңесшілер палатасында тіркелген консультант"
+          }
+        },
+        "passwordStrength": {
+          "weak": "Әлсіз",
+          "fair": "Орташа",
+          "good": "Жақсы",
+          "strong": "Сенімді"
+        },
+        "requirements": {
+          "title": "Құпия сөз құрамында болуы керек:",
+          "length": "Кемінде 8 таңба",
+          "uppercase": "Бас әріп",
+          "lowercase": "Кіші әріп",
+          "digit": "Сан"
+        },
+        "fileUpload": {
+          "drag": "Файлды сүйреңіз немесе таңдау үшін басыңыз",
+          "formats": "Форматтар: {formats}",
+          "maxSize": "Макс. {size}MB"
+        },
+        "placeholders": {
+          "email": "example@email.com",
+          "fullName": "Иванов Иван Иванович",
+          "iin": "123456789012",
+          "password": "Құпия сөзді енгізіңіз",
+          "confirmPassword": "Құпия сөзді қайталаңыз"
+        },
+        "hints": {
+          "iin": "Сіздің ЖСН-ның 12 саны"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Құпия сөзді қалпына келтіру",
+      "email": "Email",
+      "submit": "Сілтеме жіберу",
+      "success": "Егер email бар болса, қалпына келтіру сілтемесі жіберілді",
+      "backToLogin": "Кіруге оралу"
+    },
+    "resetPassword": {
+      "title": "Құпия сөзді қалпына келтіру",
+      "password": "Жаңа құпия сөз",
+      "confirmPassword": "Құпия сөзді растаңыз",
+      "submit": "Құпия сөзді қалпына келтіру",
+      "success": "Құпия сөз сәтті өзгертілді"
+    },
+    "verifyEmail": {
+      "title": "Email растау",
+      "verifying": "Email-ді растауда...",
+      "success": "Email сәтті расталды!",
+      "error": "Сілтеме жарамсыз немесе мерзімі өткен",
+      "login": "Кіру",
+      "redirecting": "Кіру бетіне {seconds} сек. ішінде өту..."
+    }
+  },
+  "dashboard": {
+    "title": "Жеке кабинет",
+    "status": {
+      "pending": "Тексеруді күтуде",
+      "pendingMessage": "Құжаттарыңыз тексерілуде. Нәтижесін email арқылы хабарлаймыз.",
+      "approved": "Расталған",
+      "rejected": "Қабылданбаған",
+      "rejectionReason": "Қабылдамау себебі"
+    },
+    "profile": {
+      "title": "Профиль",
+      "documents": "Құжаттар",
+      "updateDocuments": "Құжаттарды жаңарту",
+      "resubmit": "Қайта тексеруге жіберу"
+    },
+    "requests": {
+      "title": "Өтініштер",
+      "noRequests": "Әзірге өтініштер жоқ",
+      "viewDetails": "Толығырақ",
+      "budget": "Бюджет",
+      "contact": "Байланыс",
+      "status": {
+        "new": "Жаңа",
+        "in_progress": "Жұмыста",
+        "closed": "Жабық"
+      }
+    },
+    "requestDetails": {
+      "info": "Өтініш туралы ақпарат",
+      "contact": "Байланыс деректері",
+      "description": "Сипаттама",
+      "budget": "Бюджет",
+      "status": "Мәртебе",
+      "createdAt": "Жасалған күні",
+      "contactName": "Аты",
+      "phone": "Телефон",
+      "preferredContact": "Қалаулы байланыс тәсілі",
+      "take": "Өтінішті алу",
+      "release": "Өтініштен бас тарту"
+    }
+  },
+  "admin": {
+    "title": "Админ-панель",
+    "login": {
+      "title": "Әкімші үшін кіру",
+      "email": "Email",
+      "password": "Құпия сөз",
+      "submit": "Кіру"
+    },
+    "dashboard": {
+      "title": "Статистика",
+      "totalRequests": "Барлық өтініштер",
+      "todayRequests": "Бүгін",
+      "weekRequests": "Осы аптада",
+      "pendingLawyers": "Тексеруді күтуде",
+      "approvedLawyers": "Расталған заңгерлер"
+    },
+    "lawyers": {
+      "title": "Заңгерлер",
+      "filter": {
+        "all": "Барлығы",
+        "pending": "Күтуде",
+        "approved": "Расталған",
+        "rejected": "Қабылданбаған"
+      },
+      "approve": "Растау",
+      "reject": "Қабылдамау",
+      "rejectReason": "Қабылдамау себебін көрсетіңіз",
+      "viewDocuments": "Құжаттарды қарау"
+    },
+    "requests": {
+      "title": "Өтініштер",
+      "markSpam": "Спам деп белгілеу",
+      "close": "Жабу"
+    }
+  },
+  "validation": {
+    "email": "Дұрыс email енгізіңіз",
+    "password": "Құпия сөз кемінде 8 таңба, бас және кіші әріп, сан болуы керек",
+    "passwordMatch": "Құпия сөздер сәйкес келмейді",
+    "phone": "Телефон +7XXXXXXXXXX форматында болуы керек",
+    "iin": "ЖСН 12 саннан тұруы керек",
+    "minLength": "Кемінде {min} таңба",
+    "maxLength": "Ең көбі {max} таңба",
+    "fileRequired": "Файл міндетті",
+    "fileSize": "Файл көлемі {size}MB аспауы керек",
+    "fileType": "Рұқсат етілген форматтар: {types}"
+  }
+}

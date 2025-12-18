@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ==================== ENUMS ====================
+
+enum LawyerType {
+  ADVOCATE
+  CONSULTANT
+}
+
+enum LawyerStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum RequestStatus {
+  NEW
+  IN_PROGRESS
+  CLOSED
+  SPAM
+}
+
+enum Currency {
+  KZT
+  USD
+  RUB
+}
+
+enum PreferredContact {
+  PHONE
+  EMAIL
+  ANY
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  MODERATOR
+}
+
+// ==================== MODELS ====================
+
+model Request {
+  id               String           @id @default(uuid())
+  requestNumber    String           @unique @map("request_number")
+  description      String           @db.Text
+  budget           Decimal          @db.Decimal(12, 2)
+  currency         Currency         @default(KZT)
+  contactName      String           @map("contact_name")
+  phone            String
+  email            String?
+  preferredContact PreferredContact @default(ANY) @map("preferred_contact")
+  status           RequestStatus    @default(NEW)
+  ipAddress        String           @map("ip_address")
+
+  // Assigned lawyer
+  assignedLawyerId String?        @map("assigned_lawyer_id")
+  assignedAt       DateTime?      @map("assigned_at")
+  assignedLawyer   LawyerProfile? @relation(fields: [assignedLawyerId], references: [id])
+
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  @@map("requests")
+}
+
+model LawyerProfile {
+  id         String       @id @default(uuid())
+  supabaseId String       @unique @map("supabase_id") // auth.users.id
+  email      String       @unique
+  lawyerType LawyerType   @map("lawyer_type")
+  fullName   String       @map("full_name")
+  iin        String       @db.VarChar(12)
+  phone      String
+
+  // Document URLs (Supabase Storage)
+  photoUrl   String @map("photo_url")
+  diplomaUrl String @map("diploma_url")
+  licenseUrl String @map("license_url") // advocate certificate OR chamber extract
+
+  // Email verification (synced from Supabase Auth)
+  emailVerified   Boolean   @default(false) @map("email_verified")
+  emailVerifiedAt DateTime? @map("email_verified_at")
+
+  // Moderation
+  status          LawyerStatus @default(PENDING)
+  rejectionReason String?      @map("rejection_reason") @db.Text
+  moderatedBy     String?      @map("moderated_by")
+  moderatedAt     DateTime?    @map("moderated_at")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  moderator        AdminUser?  @relation(fields: [moderatedBy], references: [id])
+  assignedRequests Request[]
+
+  @@map("lawyer_profiles")
+}
+
+model AdminUser {
+  id         String    @id @default(uuid())
+  supabaseId String    @unique @map("supabase_id") // auth.users.id
+  email      String    @unique
+  fullName   String    @map("full_name")
+  role       AdminRole @default(MODERATOR)
+  isActive   Boolean   @default(true) @map("is_active")
+  lastLogin  DateTime? @map("last_login")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  moderatedLawyers LawyerProfile[]
+
+  @@map("admin_users")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String   @map("actor_id")
+  actorType  String   @map("actor_type") // 'admin' | 'lawyer'
+  action     String   // 'approve_lawyer', 'reject_lawyer', 'create_request', etc.
+  targetType String   @map("target_type") // 'LawyerProfile', 'Request'
+  targetId   String   @map("target_id")
+  details    Json?    @db.JsonB
+  ipAddress  String   @map("ip_address")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  // Note: actorId references either AdminUser or LawyerProfile based on actorType
+  // FK constraints removed to allow polymorphic references
+
+  @@map("audit_logs")
+}
+
+// RefreshToken model removed - Supabase Auth handles session management

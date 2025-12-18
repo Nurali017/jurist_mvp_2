@@ -1,0 +1,271 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "success": "Успешно",
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "back": "Назад",
+    "next": "Далее",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "noResults": "Ничего не найдено",
+    "required": "Обязательное поле"
+  },
+  "nav": {
+    "home": "Главная",
+    "login": "Вход",
+    "register": "Регистрация",
+    "logout": "Выход",
+    "dashboard": "Личный кабинет",
+    "profile": "Профиль",
+    "requests": "Заявки",
+    "admin": "Админ-панель"
+  },
+  "home": {
+    "title": "Юридические услуги",
+    "subtitle": "Найдите квалифицированного юриста для решения вашего вопроса",
+    "benefits": {
+      "title": "Почему выбирают нас",
+      "verified": {
+        "title": "Проверенные юристы",
+        "description": "Все специалисты проходят проверку документов и квалификации"
+      },
+      "fast": {
+        "title": "Быстрый отклик",
+        "description": "Получите предложения от юристов в течение 24 часов"
+      },
+      "transparent": {
+        "title": "Прозрачные цены",
+        "description": "Вы видите бюджет заранее, без скрытых платежей"
+      },
+      "secure": {
+        "title": "Конфиденциальность",
+        "description": "Ваши данные защищены и не передаются третьим лицам"
+      }
+    },
+    "requestForm": {
+      "title": "Оставить заявку",
+      "description": "Описание проблемы",
+      "descriptionPlaceholder": "Опишите вашу юридическую проблему подробно (минимум 50 символов)",
+      "budget": "Бюджет",
+      "budgetPlaceholder": "Укажите примерный бюджет",
+      "currency": "Валюта",
+      "contactName": "Ваше имя",
+      "contactNamePlaceholder": "Как к вам обращаться",
+      "phone": "Телефон",
+      "phonePlaceholder": "+7XXXXXXXXXX",
+      "email": "Email (необязательно)",
+      "emailPlaceholder": "your@email.com",
+      "preferredContact": "Предпочтительный способ связи",
+      "contactPhone": "Телефон",
+      "contactEmail": "Email",
+      "contactAny": "Любой",
+      "consent": "Я согласен на обработку персональных данных",
+      "submit": "Отправить заявку",
+      "success": "Заявка успешно отправлена!",
+      "requestNumber": "Номер заявки",
+      "descriptionHint": "Минимум 50 символов",
+      "newRequest": "Создать новую заявку"
+    }
+  },
+  "footer": {
+    "copyright": "Все права защищены"
+  },
+  "auth": {
+    "login": {
+      "title": "Вход в систему",
+      "email": "Email",
+      "password": "Пароль",
+      "submit": "Войти",
+      "forgotPassword": "Забыли пароль?",
+      "noAccount": "Нет аккаунта?",
+      "register": "Зарегистрироваться",
+      "invalidCredentials": "Неверный логин или пароль"
+    },
+    "register": {
+      "title": "Регистрация",
+      "selectType": "Выберите тип",
+      "advocate": "Адвокат",
+      "consultant": "Юридический консультант",
+      "email": "Email",
+      "password": "Пароль",
+      "confirmPassword": "Подтвердите пароль",
+      "fullName": "ФИО",
+      "iin": "ИИН",
+      "phone": "Телефон",
+      "photo": "Фотография",
+      "diploma": "Диплом о юридическом образовании",
+      "license": "Лицензия",
+      "advocateLicense": "Удостоверение адвоката",
+      "consultantLicense": "Выписка из палаты юридических консультантов",
+      "submit": "Зарегистрироваться",
+      "hasAccount": "Уже есть аккаунт?",
+      "login": "Войти",
+      "success": "Регистрация успешна! Проверьте email для подтверждения.",
+      "wizard": {
+        "steps": {
+          "type": "Тип",
+          "info": "Данные",
+          "password": "Пароль",
+          "documents": "Документы"
+        },
+        "typeDescription": "Выберите тип юридической деятельности",
+        "infoDescription": "Введите контактную информацию",
+        "passwordDescription": "Создайте надёжный пароль для вашего аккаунта",
+        "documentsDescription": "Загрузите необходимые документы для верификации",
+        "lawyerTypes": {
+          "advocate": {
+            "title": "Адвокат",
+            "description": "Лицензированный адвокат с правом представления в суде"
+          },
+          "consultant": {
+            "title": "Юридический консультант",
+            "description": "Консультант, зарегистрированный в палате юридических консультантов"
+          }
+        },
+        "passwordStrength": {
+          "weak": "Слабый",
+          "fair": "Средний",
+          "good": "Хороший",
+          "strong": "Надёжный"
+        },
+        "requirements": {
+          "title": "Пароль должен содержать:",
+          "length": "Минимум 8 символов",
+          "uppercase": "Заглавную букву",
+          "lowercase": "Строчную букву",
+          "digit": "Цифру"
+        },
+        "fileUpload": {
+          "drag": "Перетащите файл или нажмите для выбора",
+          "formats": "Форматы: {formats}",
+          "maxSize": "Макс. {size}MB"
+        },
+        "placeholders": {
+          "email": "example@email.com",
+          "fullName": "Иванов Иван Иванович",
+          "iin": "123456789012",
+          "password": "Введите пароль",
+          "confirmPassword": "Повторите пароль"
+        },
+        "hints": {
+          "iin": "12 цифр вашего ИИН"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Восстановление пароля",
+      "email": "Email",
+      "submit": "Отправить ссылку",
+      "success": "Если email существует, ссылка для сброса отправлена",
+      "backToLogin": "Вернуться ко входу"
+    },
+    "resetPassword": {
+      "title": "Сброс пароля",
+      "password": "Новый пароль",
+      "confirmPassword": "Подтвердите пароль",
+      "submit": "Сбросить пароль",
+      "success": "Пароль успешно изменен"
+    },
+    "verifyEmail": {
+      "title": "Подтверждение email",
+      "verifying": "Подтверждаем ваш email...",
+      "success": "Email успешно подтвержден!",
+      "error": "Ссылка недействительна или истекла",
+      "login": "Войти",
+      "redirecting": "Переход на страницу входа через {seconds} сек..."
+    }
+  },
+  "dashboard": {
+    "title": "Личный кабинет",
+    "status": {
+      "pending": "Ожидание проверки",
+      "pendingMessage": "Ваши документы находятся на проверке. Мы уведомим вас о результате по email.",
+      "approved": "Подтвержден",
+      "rejected": "Отклонен",
+      "rejectionReason": "Причина отклонения"
+    },
+    "profile": {
+      "title": "Профиль",
+      "documents": "Документы",
+      "updateDocuments": "Обновить документы",
+      "resubmit": "Отправить на повторную проверку"
+    },
+    "requests": {
+      "title": "Заявки",
+      "noRequests": "Заявок пока нет",
+      "viewDetails": "Подробнее",
+      "budget": "Бюджет",
+      "contact": "Контакт",
+      "status": {
+        "new": "Новая",
+        "in_progress": "В работе",
+        "closed": "Закрыта"
+      }
+    },
+    "requestDetails": {
+      "info": "Информация о заявке",
+      "contact": "Контактные данные",
+      "description": "Описание",
+      "budget": "Бюджет",
+      "status": "Статус",
+      "createdAt": "Дата создания",
+      "contactName": "Имя",
+      "phone": "Телефон",
+      "preferredContact": "Предпочтительный способ связи",
+      "take": "Взять заявку",
+      "release": "Отказаться от заявки"
+    }
+  },
+  "admin": {
+    "title": "Админ-панель",
+    "login": {
+      "title": "Вход для администратора",
+      "email": "Email",
+      "password": "Пароль",
+      "submit": "Войти"
+    },
+    "dashboard": {
+      "title": "Статистика",
+      "totalRequests": "Всего заявок",
+      "todayRequests": "За сегодня",
+      "weekRequests": "За неделю",
+      "pendingLawyers": "Ожидают проверки",
+      "approvedLawyers": "Одобренных юристов"
+    },
+    "lawyers": {
+      "title": "Юристы",
+      "filter": {
+        "all": "Все",
+        "pending": "Ожидают",
+        "approved": "Одобрены",
+        "rejected": "Отклонены"
+      },
+      "approve": "Одобрить",
+      "reject": "Отклонить",
+      "rejectReason": "Укажите причину отклонения",
+      "viewDocuments": "Просмотр документов"
+    },
+    "requests": {
+      "title": "Заявки",
+      "markSpam": "Пометить как спам",
+      "close": "Закрыть"
+    }
+  },
+  "validation": {
+    "email": "Введите корректный email",
+    "password": "Пароль должен содержать минимум 8 символов, заглавную и строчную буквы, цифру",
+    "passwordMatch": "Пароли не совпадают",
+    "phone": "Телефон должен быть в формате +7XXXXXXXXXX",
+    "iin": "ИИН должен содержать 12 цифр",
+    "minLength": "Минимум {min} символов",
+    "maxLength": "Максимум {max} символов",
+    "fileRequired": "Файл обязателен",
+    "fileSize": "Размер файла не должен превышать {size}MB",
+    "fileType": "Допустимые форматы: {types}"
+  }
+}

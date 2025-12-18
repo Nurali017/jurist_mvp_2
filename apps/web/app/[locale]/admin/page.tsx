@@ -127,18 +127,21 @@ export default function AdminDashboardPage() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                {t('dashboard.approvedLawyers')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl font-bold text-green-600">
-                {stats?.lawyers.approved || 0}
-              </p>
-            </CardContent>
-          </Card>
+          <Link href={`/${locale}/admin/lawyers?status=APPROVED`}>
+            <Card className="cursor-pointer hover:bg-muted/50 transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  {t('dashboard.approvedLawyers')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-2xl font-bold text-green-600">
+                  {stats?.lawyers.approved || 0}
+                </p>
+                <p className="text-xs text-primary mt-1">Показать →</p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Quick Links */}

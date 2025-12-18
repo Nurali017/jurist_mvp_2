@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { Header } from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
@@ -27,10 +27,14 @@ export default function AdminLawyersPage() {
   const tCommon = useTranslations('common');
   const locale = useLocale();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { isAuthenticated, user, hasHydrated } = useAuthStore();
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const urlStatus = searchParams.get('status') as StatusFilter | null;
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>(
+    urlStatus && ['PENDING', 'APPROVED', 'REJECTED'].includes(urlStatus) ? urlStatus : 'all'
+  );
   const [search, setSearch] = useState('');
 
   useEffect(() => {

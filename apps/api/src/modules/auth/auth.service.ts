@@ -373,6 +373,16 @@ export class AuthService {
     return null;
   }
 
+  // ==================== EMAIL CHECK ====================
+
+  async checkEmailAvailability(email: string): Promise<{ available: boolean }> {
+    const existingLawyer = await this.prisma.lawyerProfile.findUnique({
+      where: { email: email.toLowerCase() },
+    });
+
+    return { available: !existingLawyer };
+  }
+
   // ==================== HELPERS ====================
 
   private validateIIN(iin: string): boolean {

@@ -76,6 +76,7 @@ export function RegistrationWizard() {
   const password = watch('password') || '';
   const phone = watch('phone') || '';
   const iin = watch('iin') || '';
+  const email = watch('email') || '';
 
   const steps = [
     { label: tWizard('steps.type') },
@@ -154,7 +155,24 @@ export function RegistrationWizard() {
       await authApi.register(formData);
       setSuccess(true);
     } catch (err: any) {
-      setError(err.response?.data?.message || tCommon('error'));
+      const status = err.response?.status;
+      const message = err.response?.data?.message;
+
+      if (status === 400) {
+        // Bad request - validation error from server
+        setError(message || 'Неверные данные. Проверьте введённую информацию.');
+      } else if (status === 409) {
+        // Conflict - email already exists
+        setError('Пользователь с таким email уже существует.');
+      } else if (status >= 500) {
+        // Server error
+        setError('Ошибка сервера. Попробуйте позже.');
+      } else if (err.code === 'NETWORK_ERROR' || !err.response) {
+        // Network error
+        setError('Ошибка сети. Проверьте подключение к интернету.');
+      } else {
+        setError(message || tCommon('error'));
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -218,6 +236,8 @@ export function RegistrationWizard() {
               onPhoneChange={(value) => setValue('phone', value, { shouldValidate: true })}
               iinValue={iin}
               onIinChange={(value) => setValue('iin', value, { shouldValidate: true })}
+              emailValue={email}
+              onEmailChange={(value) => setValue('email', value, { shouldValidate: true })}
             />
           )}
 

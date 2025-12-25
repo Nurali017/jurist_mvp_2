@@ -80,6 +80,13 @@ export class AuthController {
   }
 
   @Public()
+  @Post('check-email')
+  @HttpCode(HttpStatus.OK)
+  async checkEmail(@Body('email') email: string) {
+    return this.authService.checkEmailAvailability(email);
+  }
+
+  @Public()
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   async refreshTokens(@Body('refreshToken') refreshToken: string) {

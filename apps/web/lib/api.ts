@@ -85,6 +85,8 @@ export const authApi = {
     api.post('/auth/login', { email, password }),
   forgotPassword: (email: string) =>
     api.post('/auth/forgot-password', { email }),
+  checkEmail: (email: string) =>
+    api.post<{ available: boolean }>('/auth/check-email', { email }),
   logout: () => api.post('/auth/logout'),
 };
 

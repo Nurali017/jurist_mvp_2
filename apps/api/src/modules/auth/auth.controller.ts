@@ -99,4 +99,18 @@ export class AuthController {
     const token = authHeader?.replace('Bearer ', '');
     return this.authService.logout(token);
   }
+
+  @Public()
+  @Post('create-admin')
+  @HttpCode(HttpStatus.CREATED)
+  async createAdmin(
+    @Body() body: { email: string; password: string; fullName: string; secret: string },
+  ) {
+    // Protect with secret key
+    const adminSecret = process.env.ADMIN_SECRET || 'super-secret-admin-key-2024';
+    if (body.secret !== adminSecret) {
+      throw new Error('Invalid secret');
+    }
+    return this.authService.createAdmin(body.email, body.password, body.fullName, 'SUPER_ADMIN');
+  }
 }

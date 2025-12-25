@@ -56,10 +56,49 @@ export class RequestsService {
       );
     }
 
+    // Send notification to admin
+    await this.emailService.sendNewRequestNotificationToAdmin(
+      requestNumber,
+      dto.description,
+      dto.contactName,
+      dto.phone,
+    );
+
+    // Send notifications to approved lawyers (async, don't wait)
+    this.notifyLawyers(requestNumber, dto.description, dto.budget, dto.currency);
+
     return {
       message: 'Request submitted successfully',
       requestNumber: request.requestNumber,
     };
+  }
+
+  private async notifyLawyers(
+    requestNumber: string,
+    description: string,
+    budget: number,
+    currency: string,
+  ) {
+    try {
+      // Get all approved lawyers
+      const lawyers = await this.prisma.lawyerProfile.findMany({
+        where: { status: 'APPROVED' },
+        select: { email: true },
+      });
+
+      if (lawyers.length > 0) {
+        const budgetStr = `${budget.toLocaleString()} ${currency}`;
+        await this.emailService.sendNewRequestNotificationToLawyers(
+          lawyers.map((l) => l.email),
+          requestNumber,
+          description,
+          budgetStr,
+        );
+      }
+    } catch (error) {
+      // Log but don't fail the request
+      console.error('Failed to notify lawyers:', error);
+    }
   }
 
   async findAll(options: {

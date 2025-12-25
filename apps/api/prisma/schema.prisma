@@ -80,6 +80,10 @@ model LawyerProfile {
   iin        String       @db.VarChar(12)
   phone      String
 
+  // Bio and practice areas
+  bio           String?  @db.Text  // About lawyer (min 100 characters)
+  practiceAreas String[] @default([]) @map("practice_areas") // Areas of law practice
+
   // Document URLs (Supabase Storage)
   photoUrl   String @map("photo_url")
   diplomaUrl String @map("diploma_url")

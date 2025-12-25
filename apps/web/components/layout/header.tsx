@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -35,8 +36,15 @@ export function Header() {
   return (
     <header className="border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href={`/${locale}`} className="text-xl font-bold text-primary">
-          Justice
+        <Link href={`/${locale}`} className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="QQK.KZ"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         <nav className="flex items-center gap-4">

@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
+import { Search } from 'lucide-react';
 import { Header } from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { lawyerApi } from '@/lib/api';
 import { useAuthStore } from '@/lib/store';
@@ -39,6 +41,19 @@ export default function DashboardPage() {
   const [profile, setProfile] = useState<LawyerProfile | null>(null);
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter requests by search query
+  const filteredRequests = useMemo(() => {
+    if (!searchQuery.trim()) return requests;
+    const query = searchQuery.toLowerCase();
+    return requests.filter(
+      (req) =>
+        req.requestNumber.toLowerCase().includes(query) ||
+        req.description.toLowerCase().includes(query) ||
+        req.contactName.toLowerCase().includes(query)
+    );
+  }, [requests, searchQuery]);
 
   useEffect(() => {
     // Wait for Zustand to hydrate from localStorage before checking auth
@@ -131,14 +146,28 @@ export default function DashboardPage() {
         {profile?.status === 'APPROVED' && (
           <Card>
             <CardHeader>
-              <CardTitle>{t('requests.title')}</CardTitle>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <CardTitle>{t('requests.title')}</CardTitle>
+                <div className="relative w-full sm:w-64">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder={tCommon('search')}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9"
+                  />
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
-              {requests.length === 0 ? (
-                <p className="text-muted-foreground">{t('requests.noRequests')}</p>
+              {filteredRequests.length === 0 ? (
+                <p className="text-muted-foreground">
+                  {searchQuery ? tCommon('noResults') : t('requests.noRequests')}
+                </p>
               ) : (
                 <div className="space-y-4">
-                  {requests.map((request) => (
+                  {filteredRequests.map((request) => (
                     <div
                       key={request.id}
                       className="rounded-md border p-4 hover:bg-muted/50 cursor-pointer"

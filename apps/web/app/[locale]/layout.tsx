@@ -3,9 +3,20 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { ToastProvider } from '@/components/ui/toast-provider';
 import '@/styles/globals.css';
+import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
+
+export const metadata: Metadata = {
+  title: 'QQK.KZ - Подберем тебе юриста',
+  description: 'Платформа для поиска квалифицированных юристов в Казахстане',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/logo.png',
+  },
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -30,7 +41,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ToastProvider>
+            {children}
+          </ToastProvider>
         </NextIntlClientProvider>
       </body>
     </html>

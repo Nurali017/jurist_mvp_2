@@ -111,4 +111,88 @@ export class EmailService {
       throw error;
     }
   }
+
+  async sendNewRequestNotificationToLawyers(
+    lawyerEmails: string[],
+    requestNumber: string,
+    description: string,
+    budget: string,
+  ): Promise<void> {
+    const shortDescription = description.length > 200
+      ? description.substring(0, 200) + '...'
+      : description;
+
+    for (const email of lawyerEmails) {
+      try {
+        await this.resend.emails.send({
+          from: this.fromEmail,
+          to: email,
+          subject: `Новая заявка #${requestNumber}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #10b981;">Новая заявка!</h2>
+              <p>Поступила новая заявка <strong>#${requestNumber}</strong></p>
+              <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 12px 16px; margin: 16px 0;">
+                <p><strong>Бюджет:</strong> ${budget}</p>
+                <p><strong>Описание:</strong> ${shortDescription}</p>
+              </div>
+              <a href="${this.frontendUrl}/ru/dashboard"
+                 style="display: inline-block; background-color: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">
+                Посмотреть заявку
+              </a>
+              <p style="color: #6b7280; margin-top: 24px; font-size: 14px;">
+                Войдите в личный кабинет, чтобы взять заявку в работу.
+              </p>
+            </div>
+          `,
+        });
+        this.logger.log(`New request notification sent to ${email}`);
+      } catch (error) {
+        this.logger.error(
+          `Failed to send new request notification to ${email}`,
+          error,
+        );
+        // Don't throw - continue sending to other lawyers
+      }
+    }
+  }
+
+  async sendNewRequestNotificationToAdmin(
+    requestNumber: string,
+    description: string,
+    contactName: string,
+    phone: string,
+  ): Promise<void> {
+    const adminEmail = process.env.ADMIN_EMAIL || 'a.bastaubayev@gmail.com';
+    const shortDescription = description.length > 300
+      ? description.substring(0, 300) + '...'
+      : description;
+
+    try {
+      await this.resend.emails.send({
+        from: this.fromEmail,
+        to: adminEmail,
+        subject: `[Admin] Новая заявка #${requestNumber}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #3b82f6;">Новая заявка на платформе</h2>
+            <p>Поступила новая заявка <strong>#${requestNumber}</strong></p>
+            <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 16px; margin: 16px 0;">
+              <p><strong>Клиент:</strong> ${contactName}</p>
+              <p><strong>Телефон:</strong> ${phone}</p>
+              <p><strong>Описание:</strong> ${shortDescription}</p>
+            </div>
+            <a href="${this.frontendUrl}/ru/admin/requests"
+               style="display: inline-block; background-color: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">
+              Открыть админ-панель
+            </a>
+          </div>
+        `,
+      });
+      this.logger.log(`Admin notification sent to ${adminEmail}`);
+    } catch (error) {
+      this.logger.error(`Failed to send admin notification`, error);
+      // Don't throw - this is a non-critical notification
+    }
+  }
 }

@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { RegisterDto, LoginDto } from './dto';
+import { EmailService } from './email.service';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService,
+    private emailService: EmailService,
   ) {
     this.supabase = createClient(
       this.configService.get<string>('supabase.url')!,
@@ -93,6 +95,14 @@ export class AuthService {
         licenseUrl: documentUrls.licenseUrl,
       },
     });
+
+    // Notify admin about new lawyer registration (async, don't wait)
+    this.emailService.sendNewLawyerNotificationToAdmin(
+      dto.email,
+      dto.fullName,
+      dto.lawyerType,
+      dto.phone,
+    );
 
     return {
       message: 'Registration successful. Please check your email to verify your account.',

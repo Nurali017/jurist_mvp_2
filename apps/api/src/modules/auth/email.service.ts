@@ -195,4 +195,42 @@ export class EmailService {
       // Don't throw - this is a non-critical notification
     }
   }
+
+  async sendNewLawyerNotificationToAdmin(
+    lawyerEmail: string,
+    fullName: string,
+    lawyerType: string,
+    phone: string,
+  ): Promise<void> {
+    const adminEmail = process.env.ADMIN_EMAIL || 'a.bastaubayev@gmail.com';
+    const typeLabel = lawyerType === 'ADVOCATE' ? 'Адвокат' : 'Юридический консультант';
+
+    try {
+      await this.resend.emails.send({
+        from: this.fromEmail,
+        to: adminEmail,
+        subject: `[Admin] Новая регистрация юриста`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #f59e0b;">Новая регистрация юриста</h2>
+            <p>На платформе зарегистрировался новый юрист и ожидает проверки.</p>
+            <div style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px 16px; margin: 16px 0;">
+              <p><strong>ФИО:</strong> ${fullName}</p>
+              <p><strong>Тип:</strong> ${typeLabel}</p>
+              <p><strong>Email:</strong> ${lawyerEmail}</p>
+              <p><strong>Телефон:</strong> ${phone}</p>
+            </div>
+            <a href="${this.frontendUrl}/ru/admin/lawyers"
+               style="display: inline-block; background-color: #f59e0b; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin-top: 16px;">
+              Проверить документы
+            </a>
+          </div>
+        `,
+      });
+      this.logger.log(`New lawyer notification sent to admin`);
+    } catch (error) {
+      this.logger.error(`Failed to send new lawyer notification to admin`, error);
+      // Don't throw - this is a non-critical notification
+    }
+  }
 }

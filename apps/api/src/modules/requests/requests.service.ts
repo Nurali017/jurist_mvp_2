@@ -65,7 +65,7 @@ export class RequestsService {
     );
 
     // Send notifications to approved lawyers (async, don't wait)
-    this.notifyLawyers(requestNumber, dto.description, dto.budget, dto.currency);
+    this.notifyLawyers(requestNumber, dto.description, dto.budget, dto.currency || 'KZT');
 
     return {
       message: 'Request submitted successfully',

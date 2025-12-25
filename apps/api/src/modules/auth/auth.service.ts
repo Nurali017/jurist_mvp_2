@@ -275,6 +275,8 @@ export class AuthService {
   // ==================== PASSWORD RESET ====================
 
   async forgotPassword(email: string) {
+    console.log(`[ForgotPassword] Request for email: ${email.toLowerCase()}`);
+
     // Check if user exists (lawyer or admin)
     const lawyer = await this.prisma.lawyerProfile.findUnique({
       where: { email: email.toLowerCase() },
@@ -286,17 +288,21 @@ export class AuthService {
 
     // Always return success to prevent email enumeration
     if (!lawyer && !admin) {
+      console.log(`[ForgotPassword] User not found: ${email.toLowerCase()}`);
       return { message: 'If the email exists, a reset link has been sent' };
     }
 
+    console.log(`[ForgotPassword] User found, sending reset email. RedirectTo: ${this.frontendUrl}/ru/reset-password`);
+
     // Send password reset email via Supabase
-    const { error } = await this.supabase.auth.resetPasswordForEmail(email.toLowerCase(), {
+    const { data, error } = await this.supabase.auth.resetPasswordForEmail(email.toLowerCase(), {
       redirectTo: `${this.frontendUrl}/ru/reset-password`,
     });
 
     if (error) {
-      // Log error but don't expose to client
-      console.error('Password reset error:', error);
+      console.error('[ForgotPassword] Supabase error:', error.message, error);
+    } else {
+      console.log('[ForgotPassword] Supabase response:', data);
     }
 
     return { message: 'If the email exists, a reset link has been sent' };
